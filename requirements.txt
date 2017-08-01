@@ -1,0 +1,2 @@
+psutil==5.2.2
+terminaltables==3.1.0
