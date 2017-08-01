@@ -37,9 +37,9 @@ The output information will be displayed as follows:
 
 | CATEGORY | DATA TYPE | NAME | OUTPUT
 | :---: | --- | --- | --- |
-| [`category`](#category) | "patterns" \| "binaries" \| "files" | [`name`](#name) (if defined) and [`value`](#value) | File or data that matches the rule defined by [`value`](#value)
+| [`category`](#id-category) | "patterns" \| "binaries" \| "files" | [`name`](#id-name) (if defined) and [`value`](#id-value) | File or data that matches the rule defined by [`value`](#id-value)
 | * | ... | ... | 1st match<br>2nd match<br>3rd match
-| Other [`category`](#category) | ... | ... | ...
+| Other [`category`](#id-category) | ... | ... | ...
 | * | ... | ... | ...
 
 ## Demo
@@ -56,16 +56,16 @@ The current JSON structure to describe the user-defined rules is as follows:
 
 ![JSON structure](images/json_structure.png)
 
-In each category (i.e. `patterns`, `binaries` and `files`), there is a list of objects that can contain multiple [keys](#keys) such as `category` and `value`:
+In each category (i.e. `patterns`, `binaries` and `files`), there is a list of objects that can contain multiple [keys](#id-keys) such as `category` and `value`:
 
-![JSON structure](images/json_object.png)
+![JSON object](images/json_object.png)
 
-### <a id="keys">Keys</a>
+### <a id="id-keys">Keys</a>
 
 * For `patterns`, `binaries` and `files` objects:
-    * <a id="category">`category`</a> (**mandatory**): Its value describes the category the object belongs to (e.g. script, sensitive info, webserver, ...).
-    * <a id="value">`value`</a> (**mandatory**): This is the string, regexp or file you want to look for.
-    * <a id="name">`name`</a> (optional): This is the key to add a meaningful name to your regexp. If this key is defined, it will be displayed in the output alongside the `value`.
+    * <a id="id-category">`category`</a> (**mandatory**): Its value describes the category the object belongs to (e.g. script, sensitive info, webserver, ...).
+    * <a id="id-value">`value`</a> (**mandatory**): This is the string, regexp or file you want to look for.
+    * <a id="id-name">`name`</a> (optional): This is the key to add a meaningful name to your regexp. If this key is defined, it will be displayed in the output alongside the `value`.
     * `exclude` defined locally (optional): Its value will be excluded from the search for the specific object only. For instance, defining `"exclude": "html,js"` alongside `"value": "admin"` in an object will exclude every html _and_ js file that might contain the value "admin".
     * `exclude` defined globally (optional): Its value will be excluded from the search for every object in the list of objects.
     * `include` defined locally (optional): Its value will be included to the search. This is useful if you would like to globally exclude a file type but still include it for a specific object. In the case a value is locally excluded and locally included at the same time, the value will be _included_.
@@ -75,7 +75,7 @@ In each category (i.e. `patterns`, `binaries` and `files`), there is a list of o
 
 ### Values
 
-Using the value `binary` for the keys `exclude` or `include` in `patterns` will exclude/include binary files in the search.
+Using the value "binary" for the keys `exclude` or `include` in `patterns` will exclude/include binary files in the search.
 
 ## Contributing
 
