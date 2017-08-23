@@ -8,6 +8,7 @@
 $ git clone https://github.com/secjey/static-firmware-analysis
 $ cd static-firmware-analysis 
 $ pip install -r requirements.txt
+$ chmod +x static_analysis.py
 ```
 
 ## Usage
@@ -29,7 +30,19 @@ optional arguments:
   --rules JSON_FILE     Path to the file containing the rules in JSON format
 ```
 
-By default, the output will be displayed in the console, but it will only contain X matches for each object (shortened version). In the case there are more results, a `...` will be added. This is useful to have a quick overview. In the case you want to see all information (full version), you need to provide a path for the output file.
+Using this tool is straightforward: Simply provide the path to the extracted file system root directory as follows:
+
+```
+./static_analysis.py /path/to/rootfs
+```
+
+This tool can be used as it is, thanks to basic rules pre-defined in `rules.json`. However, if you want to customise the rules in order to identify further information in the root file system, have a look at the [JSON structure](#id-json-structure).
+
+By default, the output will be displayed in the console, but it will only contain X matches for each object (shortened version). In the case there are more results, a `...` will be added. This is useful to have a quick overview. In the case you want to see all information (full version), you need to provide a path for the output file as follows:
+
+```
+./static_analysis.py /path/to/rootfs -o output.txt
+```
 
 ### Output
 
@@ -50,7 +63,7 @@ The output information will be displayed as follows:
 
 Thanks to the rules defined in a JSON format, users can customize their search according to their needs. You can easily edit the `rules.json` file with a [JSON editor](http://www.jsoneditoronline.org).
 
-### JSON structure
+### <a id="id-json-structure">JSON structure</a>
 
 The current JSON structure to describe the user-defined rules is as follows:
 
@@ -79,7 +92,7 @@ Using the value "binary" for the keys `exclude` or `include` in `patterns` will 
 
 ## Contributing
 
-All your bug reports and feature ideas are highly appreciated, thanks in advance! 
+All your bug reports and feature ideas are highly appreciated, thanks in advance! Please add a star if you like the content of this repository! The more people interested in this content, the more features will be added in the near future.
 
 If you would like to contribute but you don't know what to implement, here is the task list:
 
@@ -88,6 +101,7 @@ If you would like to contribute but you don't know what to implement, here is th
 - [ ] Add support for the keys `exclude-dir` and `include-dir` to exclude/include directories
 - [ ] Write a unittest with pytest
 - [ ] Add other `rules.json` templates to meet specific requirements (e.g. specific vendor)
+- [ ] Perform further analysis if files such as certificates or ssh configuration files are found
 - [x] Update the README
 
 ## License
