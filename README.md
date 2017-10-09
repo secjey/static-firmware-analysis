@@ -1,6 +1,18 @@
-# static-firmware-analysis
+# Static firmware analysis
 
 [![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](https://github.com/secjey/static-firmware-analysis/issues)
+
+## Description
+
+This project has been inspired by "firmwalker", a tool developed by [Smith](https://github.com/craigz28/firmwalker), which enables users to search for files of interest in an extracted firmware file system. Unfortunately, rules that are used in this tool to detect files are too restrictive as they do not handle wildcards, which means they are likely to miss important files. Moreover, some rules are hard-coded in the script which makes it difficult to extend with other rules and obtain a flexible solution.
+
+To tackle this latter problem and have a more robust tool designed to be easily expanded with new rules, a python tool has been implemented from scratch. Thanks to all the rules being defined in a JSON file, users can customise their search according to their needs. Regular expressions for hashes, URLs, e-mails, files and binaries can be searched. Moreover, various parameters are pre-defined to e.g. let users group items into categories or exclude specific files in their search. This tool represents a good starting point when performing static analysis of file systems. The python tool will automatically look for the following:
+
+* keywords related to potential sensitive information such as root, password, backdoor, shell, WEP.
+* IP addresses, email addresses, URLs.
+* Files of interest such as /etc/passwd, /etc/shadow, SSL and SSH keys, configuration files, scripts, source code.
+* Binaries of interest in embedded systems and IoT devices such as web server's binaries, busybox, FTP and SSH server's binaries.
+* Potential MD5/SHA1 hashes in any type of file.
 
 ## Installation
 
@@ -46,7 +58,7 @@ By default, the output will be displayed in the console, but it will only contai
 
 ### Output
 
-The output information will be displayed as follows:
+The output information will be displayed in a table as follows:
 
 | CATEGORY | DATA TYPE | NAME | OUTPUT
 | :---: | --- | --- | --- |
